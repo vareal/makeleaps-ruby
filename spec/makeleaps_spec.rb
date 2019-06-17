@@ -1,9 +1,5 @@
-RSpec.describe Makeleaps::Ruby do
+RSpec.describe Makeleaps do
   it "has a version number" do
     expect(Makeleaps::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
   end
 end
