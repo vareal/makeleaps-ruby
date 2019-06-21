@@ -1,3 +1,7 @@
+[![Build Status](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)
+[![MIT Licence](https://img.shields.io/github/license/zeals-co-ltd/makeleaps-ruby.svg?style=plastic)](https://img.shields.io/github/license/zeals-co-ltd/makeleaps-ruby.svg?style=plastic)
+[![Gem Version](https://badge.fury.io/rb/makeleaps-ruby.svg?style=plastic)](https://badge.fury.io/rb/makeleaps-ruby?style=plastic)
+
 # Makeleaps Ruby
 
 A simple ruby client for [Makeleaps API](https://app.makeleaps.com/api/docs/).
