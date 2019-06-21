@@ -1,8 +1,8 @@
 # Makeleaps Ruby
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/makeleaps`. To experiment with that code, run `bin/console` for an interactive prompt.
+A simple ruby client for [Makeleaps API](https://app.makeleaps.com/api/docs/).
 
-TODO: Delete this and the text above, and describe your gem
+* Note: this is NOT an official library, but an OSS maintained by third party developers. Please use it as your own risk.
 
 ## Installation
 
@@ -22,7 +22,73 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'makeleaps'
+
+# establish connection using access token
+client = Makeleaps::Client.new('your client-id','your client-secret')
+client.connect!
+
+# specify your parter_mid (you need to set one to access various resouces)
+client.set_partner!(name: 'your_company_name')
+```
+
+### Examples
+
+Refer to the [official API document](https://app.makeleaps.com/api/docs/) for detailed API reference.
+
+#### GET (a single instance)
+
+```ruby
+client.get '/api/partner/xxxxxxx/document/yyyyyy/'
+
+# below are actually the same request
+client.get '/api/partner/xxxxxxx/document/yyyyyy/'                          # direct access (path)
+client.get 'https://api.makeleaps.com/api/partner/xxxxxxx/document/yyyyyy/' # direct access (full url)
+client.get :document, yyyyy                                                 # endpoints can also be referred as symbols
+```
+* in the last example, (<partner_mid> is automatically supplied after #set_partner! is invoked
+
+#### GET (a collection)
+
+```ruby
+client.get :document # fetching a list of documents
+client.get :contact  # fetching a list of contacts
+
+# visiting all pages (following `next` links provided by API)
+# (requests are limited at maximum rate of 0.1sec per each)
+total_count = 0
+client.each_page :document do |documents|
+  total_count += documents.count
+end
+
+# find a resource (out of all the pages)
+client.find_resource(:document) do |document|
+  document['title'].match? /URGENT/
+end
+
+# find a resource (within a response)
+documents = client.get :document
+document.find_resource do |document|
+  document['document_number'].to_i >= 123 && document['note'].match? /IMPORTANT/
+end
+
+# adding a query
+documents = client.get :document { |req| req.params['document_number'] = "1000" }
+documents = client.get :document { |req| req.params['date__lt'] = "2020-01-30" }
+```
+
+#### POST/PATCH/PUT/DELETE
+
+Read the manual carefully before sending a request- it seems API is still beta version, so it might give an unexpected effect on your data when misused. The wrapper gem does not check the validity of the request parameters/payloads.
+
+```ruby
+client.post :item, <mid> { |req| req.body = new_item.to_json }
+
+client.patch(:document, <mid>) { |req| req.body = {autocalculate: true, lineitems: updated_items}.to_json }
+
+client.delete :contact, <mid>
+```
 
 ## Development
 
