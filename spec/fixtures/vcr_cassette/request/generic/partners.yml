@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.makeleaps.com/api/partner/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer qwertyuiopp1234567890zxcvbnm
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.14.0 (Ubuntu)
+      Date:
+      - Thu, 20 Jun 2019 14:24:55 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept, Origin, Authorization, Accept-Language, Cookie, Accept-Encoding
+      Allow:
+      - GET, HEAD, OPTIONS
+      Cache-Control:
+      - private
+      X-Frame-Options:
+      - SAMEORIGIN
+      Etag:
+      - W/"f2b8d1d6dc3703a18b38c002f28162b0"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Language:
+      - en
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{"next":null,"prev":null,"page":1,"count":1,"status":200},"response":[{"url":"https://api.makeleaps.com/api/partner/123456789123456789/","name":"mock
+        industory co ltd.","clients":"https://api.makeleaps.com/api/partner/123456789123456789/client/","contacts":"https://api.makeleaps.com/api/partner/123456789123456789/contact/","documents":"https://api.makeleaps.com/api/partner/123456789123456789/document/","line_item_catalog":"https://api.makeleaps.com/api/partner/123456789123456789/item/","tags":"https://api.makeleaps.com/api/partner/123456789123456789/tag/","sending_orders":"https://api.makeleaps.com/api/partner/123456789123456789/sending/order/","history":"https://api.makeleaps.com/api/partner/123456789123456789/history/","integrations":{}}]}'
+    http_version: 
+  recorded_at: Thu, 20 Jun 2019 14:24:55 GMT
+recorded_with: VCR 5.0.0
