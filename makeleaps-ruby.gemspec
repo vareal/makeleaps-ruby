@@ -9,24 +9,17 @@ Gem::Specification.new do |spec|
   spec.authors               = ["Koji Onishi"]
   spec.email                 = ["fursich0@gmail.com"]
 
-  spec.summary               = '' # TODO: Write a short summary, because RubyGems requires one.
-  spec.description           = '' # TODO: Write a longer description or delete this line.
-  # spec.homepage              = "TODO: Put your gem's website or public repo URL here."
-  spec.license               = "MIT"
+  spec.summary               = 'A Ruby-based, thin wrapper gem for Makeleaps API'
+  spec.description           = 'A third-party (unofficial) Makeleaps API client. Provides you a simple and intuitive access to Makeleaps API'
+  spec.homepage              = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
+  spec.license               = 'MIT'
   spec.required_ruby_version = '>= 2.3.0'
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-#   if spec.respond_to?(:metadata)
-#     spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-# 
-#     spec.metadata["homepage_uri"]      = spec.homepage
-#     spec.metadata["source_code_uri"]   = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
-#     spec.metadata["changelog_uri"]     = "TODO: Put your gem's CHANGELOG.md URL here."
-#   else
-#     raise "RubyGems 2.0 or newer is required to protect against " \
-#       "public gem pushes."
-#   end
+  if spec.respond_to?(:metadata)
+    spec.metadata["homepage_uri"]      = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
+    spec.metadata["source_code_uri"]   = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
+    # spec.metadata["changelog_uri"]     = "TODO: Put your gem's CHANGELOG.md URL here."
+  end
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
