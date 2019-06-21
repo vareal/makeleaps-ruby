@@ -12,3 +12,13 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+require 'vcr'
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassette'
+  c.hook_into :webmock
+  # c.default_cassette_options = {
+  #   match_requests_on: [:method, VCR.request_matchers.uri_without_param(:begin, :end)]
+  # }
+end
+
