@@ -1,6 +1,6 @@
-[![Build Status](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/zeals-co-ltd/makeleaps-ruby.svg?color=green&style=plastic)](https://img.shields.io/github/tag/zeals-co-ltd/makeleaps-ruby.svg?color=green&style=plastic)
 [![MIT Licence](https://img.shields.io/github/license/zeals-co-ltd/makeleaps-ruby.svg?style=plastic)](https://img.shields.io/github/license/zeals-co-ltd/makeleaps-ruby.svg?style=plastic)
-[![Gem Version](https://badge.fury.io/rb/makeleaps-ruby.svg?style=plastic)](https://badge.fury.io/rb/makeleaps-ruby?style=plastic)
+[![Build Status](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)
 
 # Makeleaps Ruby
 
