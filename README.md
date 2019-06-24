@@ -35,6 +35,9 @@ client.connect!
 
 # specify your parter_mid (you need to set one to access various resouces)
 client.set_partner!(name: 'your_company_name')
+
+# to disconnect (revokes access token)
+client.disconnect!
 ```
 
 ### Examples
