@@ -59,6 +59,21 @@ client.get :document, yyyyy                                                 # en
 client.get :document # fetching a list of documents
 client.get :contact  # fetching a list of contacts
 
+# adding a query
+documents = client.get :document { |req| req.params['document_number'] = "1000" }
+documents = client.get :document { |req| req.params['date__lt'] = "2020-01-30" }
+```
+
+#### Traversal access
+When you want to retrieve a collection of resources (e.g. invoices, cliet contacts..) which size is larger than that a single response can contain, you need to make a consecutive chain of calls, following the `next` link provided by the prior response.
+
+To traverse multiple pages following `next` links, below methods such as `#each_page`, `#each_resource`, `#find_resource` are available for convenience.
+
+WARNING: this could potentially invoke an unexpected number of API calls. Consider limiting your possibile accesses, otherwise you might exceed the maximum allowed number of requests (see [throttling](https://app.makeleaps.com/api/docs/) in the API document)
+
+Current default limit is set as 100 pages / each method, and the rate limit is set as 0.1sec / request so that it won't cause accidental traffic to the API.
+
+```ruby
 # visiting all pages (following `next` links provided by API)
 # (requests are limited at maximum rate of 0.1sec per each)
 total_count = 0
@@ -66,8 +81,25 @@ client.each_page :document do |documents|
   total_count += documents.count
 end
 
+# query strings can be added with `params` option
+# this will invoke
+# GET 'https://api.makeleaps.com/api/partner/<partner_id>/document/?document_type=invoice&&date__gte=2019-01-01&&date__lt=2019-04-01'
+# and follows `next` url until it reaches to the last page OR the maximum limit page (default 100)
+total_count = 0
+client.each_page :document, params: {document_type: :invoice, date__gte: '2019-01-01', date__lt: '2019-04-01'} do |documents|
+  total_count += documents.count
+end
+
+# each resources (that each page contains) can also be accessed via #each_resource
+# (interface are consistent with #each_page)
+client.each_resouce :document, params: {document_type: :invoice, date__gte: '2019-01-01', date__lt: '2019-04-01'} do |invoice|
+  puts invoice['display_name']
+end
+
 # find a resource (out of all the pages)
-client.find_resource(:document) do |document|
+# visits next_urls one after another. terminates when it find the first resource (with whivh the given block evaluates as true), or when it reaches to one of either the last page OR the max page (default 100)
+# returns the detected resource or nil (when not found)
+client.find_resource(:document), params: {document_type: :invoice} do |document|
   document['title'].match? /URGENT/
 end
 
@@ -76,10 +108,6 @@ documents = client.get :document
 document.find_resource do |document|
   document['document_number'].to_i >= 123 && document['note'].match? /IMPORTANT/
 end
-
-# adding a query
-documents = client.get :document { |req| req.params['document_number'] = "1000" }
-documents = client.get :document { |req| req.params['date__lt'] = "2020-01-30" }
 ```
 
 #### POST/PATCH/PUT/DELETE

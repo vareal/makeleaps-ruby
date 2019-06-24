@@ -27,12 +27,16 @@ module Makeleaps
         partners.find_resource { |partner| partner['name'] == name }
       end
 
-      # process sequentially (avoid eager loading) to ensure minimum API access
-      def each_page(start_page , &block)
+      # set max_pages to change the maximum number of retrievable pages 
+      # WARNING: this might invoke too many API accesses.
+      def each_page(start_page, *args, params: nil, max_pages: nil, &block)
         next_url = start_page
+        max_pages = max_pages || 100 # TODO: let default value be customizeable using config
 
-        loop do
-          response = get(next_url)
+        max_pages.times do
+          response = get(next_url, *args) { |req|
+            req.params.merge!(params) unless params.nil?
+          }
           block.call(response)
           next_url = response.next
           break unless next_url
@@ -40,16 +44,18 @@ module Makeleaps
         end
       end
 
-      def each_resource(start_page , &block)
-        each_page(start_page) do |page|
+      # set max_pages to change the maximum number of retrievable pages 
+      # WARNING: this might invoke too many API accesses.
+      def each_resource(start_page, *args, params: nil, max_pages: nil, &block)
+        each_page(start_page, *args, params: params, max_pages: max_pages) do |page|
           page.each_resource do |resource|
             block.call(resource)
           end
         end
       end
 
-      def find_resource(start_page, *args, &block)
-        each_page(start_page) do |page|
+      def find_resource(start_page, *args, params: nil, max_pages: nil, &block)
+        each_page(start_page, params: params, max_pages: max_pages) do |page|
           resource = page.find_resource(*args, &block)
           return resource if resource
         end
