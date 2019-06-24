@@ -20,8 +20,8 @@ RSpec.describe Makeleaps::Request::BasicAuth do
     end
   end
 
-  describe '#make_request!' do
-    subject { request.make_request! }
+  describe '#authenticate!' do
+    subject { request.authenticate! }
 
     context 'authorized client' do
       let(:username) { 'valid_username' }
@@ -36,7 +36,7 @@ RSpec.describe Makeleaps::Request::BasicAuth do
       describe 'response body' do
         before do
           VCR.use_cassette('request/basic_auth/authorized_client') do
-            @token_store = request.make_request!; 
+            @token_store = request.authenticate!
           end
         end
 
@@ -65,6 +65,25 @@ RSpec.describe Makeleaps::Request::BasicAuth do
         VCR.use_cassette('request/basic_auth/invalid_client') do
           expect{ subject }.to raise_error(Makeleaps::APIError)
         end
+      end
+    end
+  end
+
+  describe '#revoke!' do
+    let(:username) { 'valid_username' }
+    let(:password) { 'correct_password' }
+
+    before do
+      VCR.use_cassette('request/basic_auth/authorized_client') do
+        @token_store = request.authenticate!
+      end
+    end
+
+    subject { request.revoke!(@token_store.access_token) }
+
+    it 'can be revoked succesfully' do
+      VCR.use_cassette('request/basic_auth/revocation') do
+        expect(subject).to satisfy { |res| res.status == 200 }
       end
     end
   end

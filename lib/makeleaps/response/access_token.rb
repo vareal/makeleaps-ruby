@@ -14,9 +14,11 @@ module Makeleaps
         @access_token ||= body['access_token']
       end
 
-      def valid_request?
+      def valid?
         response && response.status == 200 && !expired?
       end
+
+    private
 
       def expired?
         Time.now >= requested_at + expiration_period
