@@ -18,11 +18,11 @@ module Makeleaps
 
     def connect!
       @token_store ||= @auth_request.authenticate!
-      @request = Makeleaps::Request::Generic.new(@token_store.access_token) if @token_store.valid?
+      @request = Makeleaps::Request::Generic.new(@token_store.access_token)
     end
 
     def disconnect!
-      @auth_request.revoke!(@token_store.access_token) if @token_store&.valid?
+      @auth_request.revoke!(@token_store.access_token)
       @token_store = nil
     end
   end
