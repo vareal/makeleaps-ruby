@@ -1,6 +1,8 @@
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/zeals-co-ltd/makeleaps-ruby.svg?color=green&style=plastic)](https://img.shields.io/github/tag/zeals-co-ltd/makeleaps-ruby.svg?color=green&style=plastic)
-[![MIT Licence](https://img.shields.io/github/license/zeals-co-ltd/makeleaps-ruby.svg?style=plastic)](https://img.shields.io/github/license/zeals-co-ltd/makeleaps-ruby.svg?style=plastic)
-[![Build Status](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)](https://img.shields.io/travis/com/zeals-co-ltd/makeleaps-ruby/master.svg?style=plastic)
+[![GitHub tag (latest SemVer)](https://img.shields.io/badge/tag-v0.1.6-brightgreen)](https://img.shields.io/badge/tag-v0.1.5-brightgreen)
+[![MIT Licence](https://img.shields.io/github/license/vareal/makeleaps-ruby)](https://img.shields.io/github/license/vareal/makeleaps-ruby)
+
+# Note
+This repository has been forked from the original repository [Makeleaps Ruby](https://github.com/zeals-co-ltd/makeleaps-ruby) and continues to develop since the original repository has stopped supporting and developing
 
 # Makeleaps Ruby
 
@@ -13,7 +15,7 @@ A simple ruby client for [Makeleaps API](https://app.makeleaps.com/api/docs/).
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'makeleaps-ruby'
+gem 'v-makeleaps-ruby'
 ```
 
 And then execute:
@@ -22,7 +24,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install makeleaps-ruby
+    $ gem install v-makeleaps-ruby
 
 ## Usage
 

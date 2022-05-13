@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.makeleaps.com/user/oauth2/token/?grant_type=client_credentials
+    uri: https://api.makeleaps.com/user/oauth2/token/
     body:
       encoding: UTF-8
       string: ''
@@ -55,6 +55,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error": "invalid_client"}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 20 Jun 2019 13:06:27 GMT
 recorded_with: VCR 5.0.0

@@ -1,3 +1,5 @@
+require 'json'
+
 module Makeleaps
   module Response
     class TokenStore
