@@ -10,13 +10,17 @@ module Makeleaps
 
       def initialize(username, password)
         super() do |conn|
-          conn.basic_auth(username, password)
+          conn.set_basic_auth(username, password)
         end
       end
 
       def authenticate!
         response = handle_api_response do
-          connection.post(AUTH_ENDPOINT) { |req| req.params['grant_type'] = 'client_credentials' }
+          connection.post(AUTH_ENDPOINT) do |req|
+            req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+            data = { grant_type: 'client_credentials' }
+            req.body = URI.encode_www_form(data)
+          end
         end
         Makeleaps::Response::TokenStore.new response
       end

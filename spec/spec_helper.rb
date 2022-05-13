@@ -21,4 +21,3 @@ VCR.configure do |c|
   #   match_requests_on: [:method, VCR.request_matchers.uri_without_param(:begin, :end)]
   # }
 end
-

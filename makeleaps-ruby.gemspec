@@ -4,20 +4,20 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "makeleaps/version"
 
 Gem::Specification.new do |spec|
-  spec.name                  = "makeleaps-ruby"
+  spec.name                  = "v-makeleaps-ruby"
   spec.version               = Makeleaps::VERSION
-  spec.authors               = ["Koji Onishi"]
-  spec.email                 = ["fursich0@gmail.com"]
+  spec.authors               = ["Koji Onishi", "Hieu Nguyen"]
+  spec.email                 = ["nguyen.trung.hieu@vareal.vn"]
 
   spec.summary               = 'A Ruby-based, thin wrapper gem for Makeleaps API'
   spec.description           = 'A third-party (unofficial) Makeleaps API client. Provides you a simple and intuitive access to Makeleaps API'
-  spec.homepage              = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
+  spec.homepage              = 'https://github.com/vareal/makeleaps-ruby'
   spec.license               = 'MIT'
   spec.required_ruby_version = '>= 2.3.0'
 
   if spec.respond_to?(:metadata)
-    spec.metadata["homepage_uri"]      = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
-    spec.metadata["source_code_uri"]   = 'https://github.com/zeals-co-ltd/makeleaps-ruby'
+    spec.metadata["homepage_uri"]      = 'https://github.com/vareal/makeleaps-ruby'
+    spec.metadata["source_code_uri"]   = 'https://github.com/vareal/makeleaps-ruby'
     # spec.metadata["changelog_uri"]     = "TODO: Put your gem's CHANGELOG.md URL here."
   end
 
@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'faraday', '>=0.15'
+  spec.add_dependency 'faraday', '1.10'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake',    '~> 10.0'
